@@ -5,7 +5,7 @@ import {
 
 export function Footer ({counter, quantity}) {
     return (
-        <Container>
+        <Container data-test="footer">
             <Text>
                 {counter}/{quantity} CONCLUÍDOS
             </Text>

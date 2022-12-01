@@ -1,13 +1,17 @@
-import { Footer } from "../../components/Footer";
+import { useState } from "react";
+
 import { Header } from "../../components/Header";
 import { Question } from "../../components/Question";
+import { Footer } from "../../components/Footer";
 
 import { cards } from "../../assets/cards.js";
 
 import { Container, ContentContainer } from "./styles";
 
 export function Home() {
-    return (
+    const [openedQuestionCounter, setOpenedQuestionCounter] = useState(0);
+
+    return ( 
         <Container>
             <Header />
 
@@ -15,8 +19,9 @@ export function Home() {
                 {
                     cards.map((card, index) => (
                         <Question 
-                            key={index}
-                            
+                            key={card.question}      
+                            openedQuestionCounter={openedQuestionCounter}
+                            setOpenedQuestionCounter={setOpenedQuestionCounter}                     
                             questionNumber={index}
                             question={card.question}
                             answer={card.answer}
@@ -26,7 +31,7 @@ export function Home() {
             </ContentContainer>
 
             <Footer 
-                counter={0}
+                counter={openedQuestionCounter}
                 quantity={cards.length}
             />
         </Container>
