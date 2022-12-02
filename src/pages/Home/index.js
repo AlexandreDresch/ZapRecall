@@ -10,7 +10,8 @@ import { Container, ContentContainer } from "./styles";
 
 export function Home() {
     const [openedQuestionCounter, setOpenedQuestionCounter] = useState(0);
-
+    const [resultsArray, setResultsArray] = useState([]);
+    console.log(resultsArray)
     return ( 
         <Container>
             <Header />
@@ -21,7 +22,9 @@ export function Home() {
                         <Question 
                             key={card.question}      
                             openedQuestionCounter={openedQuestionCounter}
-                            setOpenedQuestionCounter={setOpenedQuestionCounter}                     
+                            setOpenedQuestionCounter={setOpenedQuestionCounter}  
+                            resultsArray={resultsArray}
+                            setResultsArray={setResultsArray}                   
                             questionNumber={index}
                             question={card.question}
                             answer={card.answer}
@@ -33,6 +36,7 @@ export function Home() {
             <Footer 
                 counter={openedQuestionCounter}
                 quantity={cards.length}
+                resultsArray={resultsArray}
             />
         </Container>
     )

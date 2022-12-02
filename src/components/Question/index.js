@@ -10,6 +10,8 @@ import {
     TurnCardImage
 } from "./styles.js";
 
+import { IMAGES } from "../../utils/utils.js";
+
 import PlayImage from "../../assets/seta_play.png";
 import TurnImage from "../../assets/seta_virar.png";
 import RightAnswerImage from "../../assets/icone_certo.png";
@@ -30,12 +32,16 @@ const images = [
   RightAnswerImage,
 ]
 
+
+
 export function Question({
   questionNumber,
   question,
   answer,
   openedQuestionCounter,
   setOpenedQuestionCounter,
+  resultsArray,
+  setResultsArray,
 }) {
   const [openQuestion, setOpenQuestion] = useState(false);
   const [turnCard, setTurnCard] = useState(false);
@@ -52,6 +58,7 @@ export function Question({
 
   function handleResponse(response) {
     setUserResponse(response);
+    setResultsArray([...resultsArray, response]);
     setOpenQuestion(false);
     setShowIcons(true);
     setOpenedQuestionCounter(openedQuestionCounter+1)
@@ -70,22 +77,22 @@ export function Question({
           </Text>
           {
             !showIcons &&
-            <Image src={images[userResponse]} onClick={handleOpenQuestion} data-test="play-btn" />            
+            <Image src={IMAGES[userResponse]} onClick={handleOpenQuestion} data-test="play-btn" />            
           }
 
           {
             userResponse === 1 && 
-            <Image src={images[userResponse]} data-test="no-icon" />
+            <Image src={IMAGES[userResponse]} data-test="no-icon" />
           }
 
           {
             userResponse === 2 && 
-            <Image src={images[userResponse]} data-test="partial-icon" />
+            <Image src={IMAGES[userResponse]} data-test="partial-icon" />
           }
 
           {
             userResponse === 3 && 
-            <Image src={images[userResponse]} data-test="zap-icon" />
+            <Image src={IMAGES[userResponse]} data-test="zap-icon" />
           }
           
         </Container>
