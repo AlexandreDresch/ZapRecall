@@ -116,19 +116,19 @@ export function Question({
                             text={'Não lembrei'}
                             color={'#FF3030'}
                             onClick={() => handleResponse(1)}
-                            data-test="no-btn"
+                            dataTest="no-btn"
                         />
                         <Button 
                             text={'Quase não lembrei'}
                             color={'#FF922E'}
                             onClick={() => handleResponse(2)}
-                            data-test="partial-btn"
+                            dataTest="partial-btn"
                         />
                         <Button 
                             text={'Zap!'}
                             color={'#2FBE34'}
                             onClick={() => handleResponse(3)}
-                            data-test="zap-btn"
+                            dataTest="zap-btn"
                         />
                     </div>
                 </OpenedContainer>

@@ -56,7 +56,7 @@ export function Footer ({counter, quantity, resultsArray}) {
                     <ImagesContainer>
                         {
                             resultsArray.map((item) => (                    
-                                <Image src={IMAGES[item]} data-test={dataTesters[item]}/>                            
+                                <Image src={IMAGES[item]} data-test={dataTesters[+item]}/>                            
                             ))
                         }
                     </ImagesContainer>
