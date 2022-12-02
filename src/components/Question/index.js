@@ -102,13 +102,13 @@ export function Question({
         <>
           {
             !turnCard ? (
-                <OpenedContainer>
+                <OpenedContainer data-test="flashcard">
                     <Text data-test="flashcard-text">{question}</Text>
 
                     <TurnCardImage src={TurnImage} onClick={handleOpenAnswer} data-test="turn-btn"/>
                 </OpenedContainer>
             ) : (
-                <OpenedContainer>
+                <OpenedContainer data-test="flashcard">
                     <Text data-test="flashcard-text">{answer}</Text>
 
                     <div>
