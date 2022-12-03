@@ -1,38 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Button } from "./Button/index.js";
 
-import { 
-    Container, 
-    Text, 
-    Image,
-    OpenedContainer,
-    TurnCardImage
+import {
+  Container,
+  Text,
+  Image,
+  OpenedContainer,
+  TurnCardImage,
 } from "./styles.js";
 
 import { IMAGES } from "../../utils/utils.js";
 
-import PlayImage from "../../assets/seta_play.png";
 import TurnImage from "../../assets/seta_virar.png";
-import RightAnswerImage from "../../assets/icone_certo.png";
-import AlmostAnswerImage from "../../assets/icone_quase.png";
-import WrongAnswerImage from "../../assets/icone_erro.png";
 
-const colors = [
-  '#333333',
-  '#FF3030',
-  '#FF922E',
-  '#2FBE34'
-];
-
-const images = [
-  PlayImage,  
-  WrongAnswerImage,
-  AlmostAnswerImage,
-  RightAnswerImage,
-]
-
-
+const colors = ["#333333", "#FF3030", "#FF922E", "#2FBE34"];
 
 export function Question({
   questionNumber,
@@ -61,82 +43,80 @@ export function Question({
     setResultsArray([...resultsArray, response]);
     setOpenQuestion(false);
     setShowIcons(true);
-    setOpenedQuestionCounter(openedQuestionCounter+1)
+    setOpenedQuestionCounter(openedQuestionCounter + 1);
   }
 
   return (
     <>
       {!openQuestion ? (
         <Container data-test="flashcard">
-          <Text 
+          <Text
             color={colors[userResponse]}
-            decoration={userResponse === 0 ? 'none' : 'line-through'}
+            decoration={userResponse === 0 ? "none" : "line-through"}
             data-test="flashcard-text"
           >
             Pergunta {questionNumber + 1}
           </Text>
-          {
-            !showIcons &&
-            <Image src={IMAGES[userResponse]} onClick={handleOpenQuestion} data-test="play-btn" />            
-          }
+          {!showIcons && (
+            <Image
+              src={IMAGES[userResponse]}
+              onClick={handleOpenQuestion}
+              data-test="play-btn"
+            />
+          )}
 
-          {
-            userResponse === 1 && 
+          {userResponse === 1 && (
             <Image src={IMAGES[userResponse]} data-test="no-icon" />
-          }
+          )}
 
-          {
-            userResponse === 2 && 
+          {userResponse === 2 && (
             <Image src={IMAGES[userResponse]} data-test="partial-icon" />
-          }
+          )}
 
-          {
-            userResponse === 3 && 
+          {userResponse === 3 && (
             <Image src={IMAGES[userResponse]} data-test="zap-icon" />
-          }
-          
+          )}
         </Container>
-      )
-      :
-      (
+      ) : (
         <>
-          {
-            !turnCard ? (
-                <OpenedContainer data-test="flashcard">
-                    <Text data-test="flashcard-text">{question}</Text>
+          {!turnCard ? (
+            <OpenedContainer data-test="flashcard">
+              <Text data-test="flashcard-text">{question}</Text>
 
-                    <TurnCardImage src={TurnImage} onClick={handleOpenAnswer} data-test="turn-btn"/>
-                </OpenedContainer>
-            ) : (
-                <OpenedContainer data-test="flashcard">
-                    <Text data-test="flashcard-text">{answer}</Text>
+              <TurnCardImage
+                src={TurnImage}
+                onClick={handleOpenAnswer}
+                data-test="turn-btn"
+              />
+            </OpenedContainer>
+          ) : (
+            <OpenedContainer data-test="flashcard">
+              <Text data-test="flashcard-text">{answer}</Text>
 
-                    <div>
-                        <Button 
-                            text={'Não lembrei'}
-                            color={'#FF3030'}
-                            onClick={() => handleResponse(1)}
-                            dataTest="no-btn"
-                        />
-                        <Button 
-                            text={'Quase não lembrei'}
-                            color={'#FF922E'}
-                            onClick={() => handleResponse(2)}
-                            dataTest="partial-btn"
-                        />
-                        <Button 
-                            text={'Zap!'}
-                            color={'#2FBE34'}
-                            onClick={() => handleResponse(3)}
-                            dataTest="zap-btn"
-                        />
-                    </div>
-                </OpenedContainer>
-            )
-          }
+              <div>
+                <Button
+                  text={"Não lembrei"}
+                  color={"#FF3030"}
+                  onClick={() => handleResponse(1)}
+                  dataTest="no-btn"
+                />
+                <Button
+                  text={"Quase não lembrei"}
+                  color={"#FF922E"}
+                  onClick={() => handleResponse(2)}
+                  dataTest="partial-btn"
+                />
+                <Button
+                  text={"Zap!"}
+                  color={"#2FBE34"}
+                  onClick={() => handleResponse(3)}
+                  dataTest="zap-btn"
+                />
+              </div>
+            </OpenedContainer>
+          )}
         </>
-      )
-    }
+      )}
     </>
   );
 }
