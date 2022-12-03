@@ -4,7 +4,6 @@ import LogoImage from "../../assets/logo.png";
 
 export function SignIn({ setIsLoggedIn }) {
   function handleLogIn() {
-    console.log("answer");
     setIsLoggedIn(true);
   }
 
